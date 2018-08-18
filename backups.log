@@ -1,0 +1,50 @@
+2018-08-18 09:41:09.012779 - Starting backup: maneblog
+2018-08-18 09:41:09.024003 - maneblog: compressing /var/www/mane.blog.br
+2018-08-18 09:42:23.500282 - Compression successful!
+2018-08-18 09:42:23.991524 - maneblog: compressing docker container mysql1
+2018-08-18 09:42:23.991811 - maneblog: Creating image of container mysql1
+2018-08-18 09:42:25.542596 - maneblog: Compressing image.
+2018-08-18 09:45:24.560790 - Image of container mysql1 was successfully removed.
+2018-08-18 09:45:24.562662 - maneblog: starting to upload files to remote server.
+2018-08-18 09:45:51.502847 - maneblog: All cleaned up, job finished.
+2018-08-18 09:55:10.885963 - Starting backup: maneblog
+2018-08-18 09:55:10.889022 - maneblog: compressing /var/www/mane.blog.br
+2018-08-18 09:57:30.115152 - Starting backup: maneblog
+2018-08-18 09:57:30.116093 - maneblog: compressing /var/www/mane.blog.br
+2018-08-18 09:58:44.715714 - WARN: Exit 1 - tar: Removing leading `/' from member names
+tar: /var/www/mane.blog.br/logs/access.log: file changed as we read it
+
+2018-08-18 09:58:45.204564 - maneblog: compressing docker container mysql1
+2018-08-18 09:58:45.204965 - maneblog: Creating image of container mysql1
+2018-08-18 09:58:46.747641 - maneblog: Compressing image.
+2018-08-18 10:01:45.127657 - Image of container mysql1 was successfully removed.
+2018-08-18 10:01:45.127975 - maneblog: starting to upload files to remote server: francis@51.15.227.4:backup
+2018-08-18 10:02:12.316216 - maneblog: WARN destination home-pi is not configured on destinations.json.
+2018-08-18 10:02:12.316561 - maneblog: WARN destination cloud is not configured on destinations.json.
+2018-08-18 10:02:12.316732 - maneblog: starting to upload files to remote server: pi@francisaugusto.asuscomm.com
+2018-08-18 10:02:12.327091 - maneblog: WARN - transfer has failed! check your settings: 
+2018-08-18 10:02:12.543944 - maneblog: All cleaned up, job finished.
+2018-08-18 10:04:27.868478 - Starting backup: maneblog
+2018-08-18 10:04:27.871572 - maneblog: compressing /var/www/mane.blog.br
+2018-08-18 10:05:42.645981 - Compression successful!
+2018-08-18 10:05:43.167918 - maneblog: compressing docker container mysql1
+2018-08-18 10:05:43.168204 - maneblog: Creating image of container mysql1
+2018-08-18 10:05:44.731626 - maneblog: Compressing image.
+2018-08-18 10:08:43.422937 - Image of container mysql1 was successfully removed.
+2018-08-18 10:08:43.424668 - maneblog: starting to upload files to remote server: francis@51.15.227.4:backup
+2018-08-18 10:09:09.394078 - maneblog: WARN destination home-pi is not configured on destinations.json.
+2018-08-18 10:09:09.394410 - maneblog: WARN destination cloud is not configured on destinations.json.
+2018-08-18 10:09:09.394574 - maneblog: starting to upload files to remote server: pi@francisaugusto.asuscomm.com:francis/Backup
+2018-08-18 10:09:46.269869 - maneblog: All cleaned up, job finished.
+2018-08-18 10:39:29 [INFO] maneblog Starting backup.
+2018-08-18 10:39:29 [INFO] maneblog Compressing /var/www/mane.blog.br
+2018-08-18 10:39:38 [INFO] maneblog Starting backup.
+2018-08-18 10:39:38 [INFO] maneblog Compressing /var/www/mane.blog.br
+2018-08-18 10:40:52 [INFO] maneblog Compression successfull.
+2018-08-18 10:40:52 [INFO] maneblog Starting dumping of docker container mysql1
+2018-08-18 10:40:52 [INFO] maneblog Creating image of container mysql1
+2018-08-18 10:40:54 [INFO] maneblog Compressing image.
+2018-08-18 10:43:52 [INFO] maneblog Image of container mysql1 was successfully removed.
+2018-08-18 10:43:52 [INFO] maneblog Starting to upload files to remote server: francis@51.15.227.4:backup
+2018-08-18 10:44:17 [INFO] maneblog Starting to upload files to remote server: pi@francisaugusto.asuscomm.com:francis/Backup
+2018-08-18 10:45:42 [INFO] maneblog All cleaned up, job finished.
