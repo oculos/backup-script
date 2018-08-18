@@ -1,0 +1,15 @@
+[
+{
+	"name"		:	"cloud1",
+	"address"	:	"me@myserver.com:backup",
+	"key"		:	"/home/me/keys/mykey"	
+
+},
+{
+	"name"		:	"cloud2",
+	"address"	:	"anotherme@anotherserver.com:copies",
+	"port"		: 	"62000",
+	"key"		:	"/home/me/keys/anotherkey"
+}
+]
+
