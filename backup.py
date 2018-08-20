@@ -66,38 +66,26 @@ def compress_paths(job):
 def compress_docker(job):
 	job_name = job['name']
 	dockers = return_array(job["docker"])
+	docker_paths = return_array(job["docker_paths"])
 	for docker in dockers:
 		container = ""
 		
-		# get the container name
-		p,output,err = exec_command(["docker", "inspect", "--format", "'{{.Name}}'",docker], False)
-		if p == 0:
-			container = str(output)[2:-2]
-			log("INFO",job_name,"Starting dumping of docker container "+container)
-		else:
-			log("WARN",job_name,"Container "+docker+" doesn't seem to exist. Skipping...")
-			continue
-		
-		# save the container as an image
-		log("INFO",job_name,"Creating image of container "+container)
-		dest_cont = job_name+"-docker-"+container+"-"+datestamp()
-		p,output,err = exec_command(["docker","commit","-p",docker,dest_cont],False)
-		if p != 0:
-			log("WARN",job_name,"Container "+container+" couldn't be saved as an image.")
-			continue
-		
+			
 		# compress docker image
 		# Needs to find a better way to compress the image, as well as get rid of "shell=True"
 		log("INFO",job_name,"Compressing image.")
 		tar_docker = ["docker","save", dest_cont]
 		gzip_docker = ["gzip",">",path_temp+dest_cont+".tar.gz"]
-		try:
-			p = subprocess.check_output("docker save "+dest_cont+" | gzip > "+path_temp+dest_cont+".tar.gz",shell=True)
-		except subprocess.CalledProcessError as grepexc:
-			if grepexc.returncode == 0:
-				log("INFO",job_name,"Docker container "+container+" successfully compressed.")
-			else:
-				log("FAULT",job_name,"Compressing the container "+container+" has failed.")
+		for pth in docker_paths:
+			try:
+				p = subprocess.check_output("docker stop "+docker)
+				p = subprocess.check_output("docker run --rm --volumes-from "+docker+" -v $(pwd):"+path_temp+ "alpine tar cvf "+job_name+"-docker-"+docker+"-"+pth.replace("/","-")+"-"+datestamp()+".tar.gz "+pth,shell=True)
+				p = subprocess.check_output("docker start "+docker)
+			except subprocess.CalledProcessError as grepexc:
+				if grepexc.returncode == 0:
+					log("INFO",job_name,"Docker container "+container+" volume "+pth+" sucessfully compressed.")
+				else:
+					log("FAULT",job_name,"Compressing the container "+container+" has failed.")
 		
 		# erase image
 		p,output,err = exec_command(["docker","rmi",dest_cont],False)

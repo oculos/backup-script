@@ -2,7 +2,8 @@
 {
         "name"          :       "myblog",
         "path"          :       "/var/www/myblog.com",
-        "docker"        :       "0ff2a12173e",
+        "docker"        :       "test-sql",
+	"docker_paths"	: 	"/etc/mysql",
         "destinations"  :       ["cloud1","cloud2"]
 },
 
@@ -10,6 +11,7 @@
 	"name"		: 	"myproject",
 	"path"		:	["/temp/proj","/home/me/proj"],
 	"docker"	: 	["3421231","123e12a"],
+	"docker_paths"	: 	"/var/lib/mysql",
 	"destinations"	:	"cloud1"
 
 },
