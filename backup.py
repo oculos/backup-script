@@ -73,26 +73,20 @@ def compress_docker(job):
 			
 		# compress docker image
 		# Needs to find a better way to compress the image, as well as get rid of "shell=True"
-		log("INFO",job_name,"Compressing image.")
-		tar_docker = ["docker","save", dest_cont]
-		gzip_docker = ["gzip",">",path_temp+dest_cont+".tar.gz"]
-		for pth in docker_paths:
-			try:
-				p = subprocess.check_output("docker stop "+docker)
-				p = subprocess.check_output("docker run --rm --volumes-from "+docker+" -v $(pwd):"+path_temp+ "alpine tar cvf "+job_name+"-docker-"+docker+"-"+pth.replace("/","-")+"-"+datestamp()+".tar.gz "+pth,shell=True)
-				p = subprocess.check_output("docker start "+docker)
-			except subprocess.CalledProcessError as grepexc:
-				if grepexc.returncode == 0:
-					log("INFO",job_name,"Docker container "+container+" volume "+pth+" sucessfully compressed.")
-				else:
-					log("FAULT",job_name,"Compressing the container "+container+" has failed.")
+
+		for container in return_array(docker):
+			log("INFO",job_name,"Compressing data for container "+container["name"])
+			for pth in return_array(container["paths"]):
+				try:
+					p = subprocess.check_output("docker stop "+container["name"])
+					p = subprocess.check_output("docker run --rm --volumes-from "+container["name"]+" -v $(pwd):"+path_temp+ "alpine tar cvf "+job_name+"-docker-"+container["name"]+"-"+pth.replace("/","-")+"-"+datestamp()+".tar.gz "+pth,shell=True)
+					p = subprocess.check_output("docker start "+container["name"])
+				except subprocess.CalledProcessError as grepexc:
+					if grepexc.returncode == 0:
+						log("INFO",job_name,"Docker container "+container["name"]+" volume "+pth+" sucessfully compressed.")
+					else:
+						log("FAULT",job_name,"Compressing the container "+container+" has failed.")
 		
-		# erase image
-		p,output,err = exec_command(["docker","rmi",dest_cont],False)
-		if p == 0:
-			log("INFO",job_name,"Image of container "+container+" was successfully removed.")
-		else:
-			log("FAULT",job_name,"Image of container "+container+" wasn't removed!")
 
 
 def upload_files(job):

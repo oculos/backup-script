@@ -2,16 +2,15 @@
 {
         "name"          :       "myblog",
         "path"          :       "/var/www/myblog.com",
-        "docker"        :       "test-sql",
-	"docker_paths"	: 	"/etc/mysql",
+        "docker"        :       [{ "name": "mycontainer, "paths" : "/etc/sql"}, {"name" : "mysecondcontainer", "paths": ["/etc/mysql","/var/lib/mysql"]}],
+
         "destinations"  :       ["cloud1","cloud2"]
 },
 
 {
 	"name"		: 	"myproject",
 	"path"		:	["/temp/proj","/home/me/proj"],
-	"docker"	: 	["3421231","123e12a"],
-	"docker_paths"	: 	"/var/lib/mysql",
+	"docker"	: 	{"name" : "mycontainer","path": "/var/tmp"}
 	"destinations"	:	"cloud1"
 
 },
