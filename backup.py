@@ -162,6 +162,7 @@ def read_jobs():
         global jobs
         with open("servers.json","r") as f:
                 jobs = json.load(f)
+		return jobs
 
 def read_destinations():
         global destinations
@@ -172,12 +173,14 @@ def read_settings():
         global settings
         with open("settings.json","r") as f:
                 settings = json.load(f)
+		return settings
 
-pathname = os.path.dirname(os.path.realpath(__file__))
-os.chdir(pathname)
-read_jobs()
-read_destinations()
-read_settings()
-run_jobs()
+if __name__ == "__main__":
+	pathname = os.path.dirname(os.path.realpath(__file__))
+	os.chdir(pathname)
+	read_jobs()
+	read_destinations()
+	read_settings()
+	run_jobs()
 
 
